@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} Опрос {% endblock %}
+
+{% block content %}
+<form action="/process" method = 'GET'>
+    <fieldset>
+    <legend><b>Опрос на знание известных личностей (выберите сферу деятельности из предложенных вариантов)</b></legend>
+    {% for question in questions %}
+        <figure><img src= {{question.image}}></figure> {{question.text}} <br>
+        <input type="radio" name= {{question.id}} value="Математик" checked>Математика<br>
+        <input type="radio" name= {{question.id}} value="Лингвист">Лингвистика<br>
+        <input type="radio" name= {{question.id}} value="Экономист">Экономика<br>
+        <input type="radio" name= {{question.id}} value="Физик">Физика<br>
+    {% endfor %}
+    Ваш гендер <br>
+    <input type="radio" name="gender" value="Другой" checked>Другой<br>
+    <input type="radio" name="gender" value="М">М<br>
+    <input type="radio" name="gender" value="Ж">Ж<br>
+    Ваш уровень образования <br>
+    <input type="radio" name="education" value="Среднее" checked>Среднее<br>
+    <input type="radio" name="education" value="Неоконченное высшее">Неоконченное высшее<br>
+    <input type="radio" name="education" value="Высшее (бакалавриат, специалитет)">Высшее (бакалавриат, специалитет)<br>
+    <input type="radio" name="education" value="Магистратура">Магистратура<br>
+    <input type="radio" name="education" value="Научная степень (кандидат наук, доктор наук, PhD)">Научная степень (кандидат наук, доктор наук, PhD)<br>
+    Ваша возрастная группа <br>
+    <input type="radio" name="age" value="До 20 лет" checked>До 20 лет<br>
+    <input type="radio" name="age" value="20-35">20-35<br>
+    <input type="radio" name="age" value="35-50">35-50<br>
+    <input type="radio" name="age" value="50+">50+<br>
+    <p><input type="submit" value="Отправить"></p>
+    </fieldset>
+</form>
+{% endblock %}

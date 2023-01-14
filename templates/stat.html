@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} Статистика {% endblock %}
+
+{% block content %}
+    <h1 class="header-1-custom"><span style="font-family: Helvetica;"><span style="font-size: 20px;">Статистика</span></span></h1>
+    <table>
+        <tr>
+            <td>Всего прошло опрос:</td>
+            <td>{{ total['total_count'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Возрастные группы</strong></td>
+        </tr>
+        {% for group in age.keys() %}
+            <tr>
+                <td>Кол-во представителей возрастной группы {{ group }}:</td>
+                <td>{{ age[group] }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td><strong>Гендерное распределение</strong></td>
+        </tr>
+        {% for group in gender.keys() %}
+            <tr>
+                <td>{{ group }}:</td>
+                <td>{{ gender[group] }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td><strong>Образование</strong></td>
+        </tr>
+        {% for group in education.keys() %}
+        <tr>
+            <td>{{ group }}:</td>
+            <td>{{ education[group] }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td><strong>Вопросы</strong></td>
+        </tr>
+        {% for question in questions.keys() %}
+        <tr>
+        <td>{{ question }} (Правильный ответ: {{ questions[question][0] }})</td>
+        </tr>
+        <tr>
+            <td>Доля правильных ответов:</td>
+            <td>{{ questions[question][1] }}%</td>
+        </tr>
+        <tr>
+            <td>Распределение ответов:</td>
+            <td>Математик: {{ questions[question][2] }}</td>
+            <td>Лингвист: {{ questions[question][3] }}</td>
+            <td>Экономист: {{ questions[question][4] }}</td>
+            <td>Физик: {{ questions[question][5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
