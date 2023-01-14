@@ -30,6 +30,9 @@ class Answers(db.Model):
     id_question = db.Column(db.Text, db.ForeignKey('questions.id'), primary_key=True)
     answer = db.Column(db.Text)
 
+with app.app_context():
+    db.create_all()
+
 @app.route("/")
 def main():
     return render_template("main.html")
